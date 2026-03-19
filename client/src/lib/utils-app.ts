@@ -148,24 +148,57 @@ export function entriesToText(entries: Entry[], title: string): string {
   const lines: string[] = [];
   const total = totalIncome(entries);
   const summary = summarizeByCategory(entries);
+  const activeSummary = summary.filter((s) => s.count > 0);
 
   // Header
   lines.push(`🚗 My Car Rent`);
   lines.push(`📅 ${title}`);
   lines.push("");
 
-  // Category summary — one line each, only show categories with data
-  const activeSummary = summary.filter((s) => s.count > 0);
-  if (activeSummary.length > 0) {
-    for (const s of activeSummary) {
-      const cat = CATEGORIES[s.category];
-      lines.push(`${cat.icon} ${cat.label} ${s.count} งาน ฿${formatPrice(s.total)}`);
+  // Category summary with entry count
+  for (const s of activeSummary) {
+    const cat = CATEGORIES[s.category];
+    lines.push(`${cat.icon} ${cat.label} ${s.count} งาน ฿${formatPrice(s.total)}`);
+  }
+  lines.push("");
+
+  // Grand total (top line)
+  lines.push(`💰 รวม ${entries.length} งาน = ฿${formatPrice(total)}`);
+  lines.push("");
+
+  // Detailed breakdown per category
+  // Group entries by category
+  const grouped: Record<Category, Entry[]> = { wash: [], delivery: [], pickup: [], other: [] };
+  for (const e of entries) {
+    grouped[e.category].push(e);
+  }
+
+  for (const s of activeSummary) {
+    const cat = CATEGORIES[s.category];
+    const catEntries = grouped[s.category];
+    lines.push(cat.label);
+    lines.push("------------------------------");
+    for (const e of catEntries) {
+      if (e.category === "other") {
+        // For "other" category, show customTitle instead of plate
+        const label = e.customTitle || "อื่นๆ";
+        lines.push(`${label} — ${formatPriceFixed(e.price)} บาท`);
+      } else {
+        // For regular categories, show plate
+        lines.push(`${e.plate || "-"} — ${formatPriceFixed(e.price)} บาท`);
+      }
     }
+    lines.push(`รวม: ${formatPriceFixed(s.total)} บาท`);
     lines.push("");
   }
 
-  // Grand total
-  lines.push(`💰 รวม ${entries.length} งาน = ฿${formatPrice(total)}`);
+  // Grand total (bottom)
+  lines.push(`รวมทั้งสิ้น: ${formatPriceFixed(total)} บาท`);
 
   return lines.join("\n");
+}
+
+/** Format price with 2 decimal places for text export */
+function formatPriceFixed(price: number): string {
+  return price.toLocaleString("th-TH", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
