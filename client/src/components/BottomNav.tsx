@@ -1,6 +1,6 @@
 /**
  * BottomNav — Mobile bottom tab navigation
- * Design: Orange & White — orange active states, orange FAB
+ * Design: Clean Light Mode — soft shadow, pill active states, floating FAB
  */
 import { useLocation, Link } from "wouter";
 import { motion } from "framer-motion";
@@ -9,8 +9,8 @@ import {
   Plus,
   ClipboardList,
   BarChart3,
-  Car,
   MoreHorizontal,
+  Car,
   Settings,
 } from "lucide-react";
 import { useState } from "react";
@@ -39,18 +39,19 @@ export default function BottomNav() {
       {/* More menu overlay */}
       {showMore && (
         <div
-          className="fixed inset-0 z-40"
+          className="fixed inset-0 z-40 bg-black/5"
           onClick={() => setShowMore(false)}
         />
       )}
 
-      {/* More menu popup */}
+      {/* More menu popup — clean card */}
       {showMore && (
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          className="fixed bottom-20 right-4 z-50 brutal-card p-2 min-w-[160px]"
+          initial={{ opacity: 0, y: 12, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 12, scale: 0.95 }}
+          className="fixed bottom-20 right-4 z-50 bg-white rounded-2xl p-1.5 min-w-[160px]"
+          style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.06)" }}
         >
           {MORE_ITEMS.map((item) => {
             const Icon = item.icon;
@@ -62,8 +63,8 @@ export default function BottomNav() {
                   setLocation(item.path);
                   setShowMore(false);
                 }}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-colors ${
-                  active ? "bg-orange-500 text-white" : "hover:bg-orange-50"
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-colors ${
+                  active ? "bg-orange-50 text-orange-600 font-medium" : "hover:bg-gray-50 text-gray-600"
                 }`}
               >
                 <Icon className="w-5 h-5" />
@@ -74,8 +75,8 @@ export default function BottomNav() {
         </motion.div>
       )}
 
-      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-orange-200 safe-bottom">
-        <div className="max-w-lg mx-auto flex items-end justify-around px-2 pt-1 pb-1">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg safe-bottom" style={{ boxShadow: "0 -1px 12px rgba(0,0,0,0.04)" }}>
+        <div className="max-w-lg mx-auto flex items-end justify-around px-2 pt-1.5 pb-1.5">
           {NAV_ITEMS.map((item) => {
             const active = item.isMore ? isMoreActive : location === item.path;
             const Icon = item.icon;
@@ -88,16 +89,18 @@ export default function BottomNav() {
                     className="relative -top-4"
                   >
                     <div
-                      className={`w-14 h-14 rounded-2xl flex items-center justify-center border-2 ${
+                      className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all ${
                         location === item.path
-                          ? "bg-orange-500 text-white border-orange-600"
-                          : "bg-white text-orange-500 border-orange-300"
+                          ? "text-white"
+                          : "bg-white text-orange-500"
                       }`}
                       style={{
-                        boxShadow:
-                          location === item.path
-                            ? "none"
-                            : "3px 3px 0px #F97316",
+                        background: location === item.path
+                          ? "linear-gradient(135deg, #FB923C, #EA580C)"
+                          : undefined,
+                        boxShadow: location === item.path
+                          ? "0 4px 16px rgba(234,88,12,0.35)"
+                          : "0 2px 12px rgba(0,0,0,0.08)",
                       }}
                     >
                       <Icon className="w-6 h-6" strokeWidth={2.5} />
@@ -121,9 +124,9 @@ export default function BottomNav() {
                   className="flex flex-col items-center py-1.5 px-2 min-w-[52px]"
                 >
                   <div
-                    className={`w-9 h-9 rounded-xl flex items-center justify-center transition-colors ${
+                    className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all ${
                       active
-                        ? "bg-orange-500 text-white"
+                        ? "bg-orange-50 text-orange-600"
                         : "text-gray-400"
                     }`}
                   >
@@ -132,7 +135,7 @@ export default function BottomNav() {
                   <span
                     className={`text-[10px] mt-0.5 ${
                       active
-                        ? "font-semibold text-orange-600"
+                        ? "font-medium text-orange-600"
                         : "text-gray-400"
                     }`}
                   >
@@ -149,9 +152,9 @@ export default function BottomNav() {
                   className="flex flex-col items-center py-1.5 px-2 min-w-[52px]"
                 >
                   <div
-                    className={`w-9 h-9 rounded-xl flex items-center justify-center transition-colors ${
+                    className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all ${
                       active
-                        ? "bg-orange-500 text-white"
+                        ? "bg-orange-50 text-orange-600"
                         : "text-gray-400"
                     }`}
                   >
@@ -160,7 +163,7 @@ export default function BottomNav() {
                   <span
                     className={`text-[10px] mt-0.5 ${
                       active
-                        ? "font-semibold text-orange-600"
+                        ? "font-medium text-orange-600"
                         : "text-gray-400"
                     }`}
                   >

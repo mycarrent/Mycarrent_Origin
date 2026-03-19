@@ -106,7 +106,7 @@ export default function Vehicles() {
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => setShowAdd(true)}
-          className="brutal-btn bg-orange-500 text-white border-orange-600 flex items-center gap-1.5 text-sm py-2.5"
+          className="clean-btn bg-orange-500 text-white flex items-center gap-1.5 text-sm py-2.5"
         >
           <Plus className="w-4 h-4" />
           เพิ่ม
@@ -133,7 +133,7 @@ export default function Vehicles() {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, x: -100 }}
-                  className="brutal-card p-4"
+                  className="clean-card p-4"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center shrink-0">
@@ -164,13 +164,13 @@ export default function Vehicles() {
                           setEditModel(plate.model || "");
                           setEditColor(plate.color || "");
                         }}
-                        className="w-9 h-9 rounded-lg border-2 border-border flex items-center justify-center hover:bg-accent transition-colors"
+                        className="w-9 h-9 rounded-lg border border-border flex items-center justify-center hover:bg-accent transition-colors"
                       >
                         <Pencil className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => setDeleteId(plate.id)}
-                        className="w-9 h-9 rounded-lg border-2 border-destructive text-destructive flex items-center justify-center hover:bg-destructive/10 transition-colors"
+                        className="w-9 h-9 rounded-lg border border-destructive text-destructive flex items-center justify-center hover:bg-destructive/10 transition-colors"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -185,7 +185,7 @@ export default function Vehicles() {
 
       {/* Add Dialog */}
       <Dialog open={showAdd} onOpenChange={setShowAdd}>
-        <DialogContent className="brutal-card !rounded-xl max-w-sm">
+        <DialogContent className="clean-card !rounded-xl max-w-sm">
           <DialogHeader>
             <DialogTitle>เพิ่มทะเบียนรถใหม่</DialogTitle>
           </DialogHeader>
@@ -196,7 +196,7 @@ export default function Vehicles() {
                 value={newPlate}
                 onChange={(e) => setNewPlate(e.target.value)}
                 placeholder="เช่น กก 1234"
-                className="text-lg py-5 border-2"
+                className="text-lg py-5 border"
                 autoFocus
               />
             </div>
@@ -206,7 +206,7 @@ export default function Vehicles() {
                 value={newModel}
                 onChange={(e) => setNewModel(e.target.value)}
                 placeholder="เช่น City Turbo, Yaris Ativ"
-                className="border-2"
+                className="border"
               />
             </div>
             <div>
@@ -215,7 +215,7 @@ export default function Vehicles() {
                 value={newColor}
                 onChange={(e) => setNewColor(e.target.value)}
                 placeholder="เช่น ขาว, ดำ, เทา"
-                className="border-2"
+                className="border"
               />
             </div>
           </div>
@@ -233,7 +233,7 @@ export default function Vehicles() {
 
       {/* Edit Dialog */}
       <Dialog open={!!editId} onOpenChange={() => setEditId(null)}>
-        <DialogContent className="brutal-card !rounded-xl max-w-sm">
+        <DialogContent className="clean-card !rounded-xl max-w-sm">
           <DialogHeader>
             <DialogTitle>แก้ไขทะเบียนรถ</DialogTitle>
           </DialogHeader>
@@ -243,7 +243,7 @@ export default function Vehicles() {
               <Input
                 value={editValue}
                 onChange={(e) => setEditValue(e.target.value)}
-                className="text-lg py-5 border-2"
+                className="text-lg py-5 border"
                 autoFocus
               />
             </div>
@@ -253,7 +253,7 @@ export default function Vehicles() {
                 value={editModel}
                 onChange={(e) => setEditModel(e.target.value)}
                 placeholder="เช่น City Turbo"
-                className="border-2"
+                className="border"
               />
             </div>
             <div>
@@ -262,7 +262,7 @@ export default function Vehicles() {
                 value={editColor}
                 onChange={(e) => setEditColor(e.target.value)}
                 placeholder="เช่น ขาว"
-                className="border-2"
+                className="border"
               />
             </div>
           </div>
@@ -280,7 +280,7 @@ export default function Vehicles() {
 
       {/* Delete Confirmation */}
       <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
-        <AlertDialogContent className="brutal-card !rounded-xl max-w-sm">
+        <AlertDialogContent className="clean-card !rounded-xl max-w-sm">
           <AlertDialogHeader>
             <AlertDialogTitle>ยืนยันการลบ</AlertDialogTitle>
             <AlertDialogDescription>

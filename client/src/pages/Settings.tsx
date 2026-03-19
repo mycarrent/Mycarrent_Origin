@@ -64,7 +64,7 @@ export default function Settings() {
       <h1 className="text-2xl font-bold mb-6">ตั้งค่า</h1>
 
       {/* App Info */}
-      <div className="brutal-card p-5 mb-4">
+      <div className="clean-card p-5 mb-4">
         <div className="flex items-center gap-3 mb-4">
           <img
             src={LOGO_URL}
@@ -85,7 +85,7 @@ export default function Settings() {
       </div>
 
       {/* Status */}
-      <div className="brutal-card p-4 mb-4">
+      <div className="clean-card p-4 mb-4">
         <div className="flex items-center gap-3">
           {isOnline ? (
             <Wifi className="w-5 h-5 text-green-600" />
@@ -106,7 +106,7 @@ export default function Settings() {
       </div>
 
       {/* PWA Install */}
-      <div className="brutal-card p-4 mb-4">
+      <div className="clean-card p-4 mb-4">
         <div className="flex items-center gap-3">
           <Smartphone className="w-5 h-5 text-orange-500" />
           <div>
@@ -123,7 +123,7 @@ export default function Settings() {
         <motion.button
           whileTap={{ scale: 0.98 }}
           onClick={handleSeedData}
-          className="brutal-btn w-full bg-card text-left flex items-center gap-3 py-3.5"
+          className="clean-btn w-full bg-card text-left flex items-center gap-3 py-3.5"
         >
           <Database className="w-5 h-5 text-orange-500" />
           <div>
@@ -137,7 +137,7 @@ export default function Settings() {
         <motion.button
           whileTap={{ scale: 0.98 }}
           onClick={() => setShowClear(true)}
-          className="brutal-btn w-full bg-card text-left flex items-center gap-3 py-3.5"
+          className="clean-btn w-full bg-card text-left flex items-center gap-3 py-3.5"
         >
           <Trash2 className="w-5 h-5 text-destructive" />
           <div>
@@ -161,7 +161,7 @@ export default function Settings() {
 
       {/* Clear Data Confirmation */}
       <AlertDialog open={showClear} onOpenChange={setShowClear}>
-        <AlertDialogContent className="brutal-card !rounded-xl max-w-sm">
+        <AlertDialogContent className="clean-card !rounded-xl max-w-sm">
           <AlertDialogHeader>
             <AlertDialogTitle>ล้างข้อมูลทั้งหมด?</AlertDialogTitle>
             <AlertDialogDescription>

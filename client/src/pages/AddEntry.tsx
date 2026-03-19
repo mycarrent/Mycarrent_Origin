@@ -110,7 +110,7 @@ export default function AddEntry() {
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          className="brutal-btn w-full text-left bg-card num-display text-base"
+          className="clean-btn w-full text-left bg-card num-display text-base"
         />
       </div>
 
@@ -132,7 +132,7 @@ export default function AddEntry() {
                   // Reset plate when switching to/from "other"
                   if (cat === "other") setPlate("");
                 }}
-                className={`brutal-card p-3 text-center transition-all ${
+                className={`clean-card p-3 text-center transition-all ${
                   selected ? "!bg-orange-50" : ""
                 }`}
                 style={{
@@ -175,7 +175,7 @@ export default function AddEntry() {
               value={customTitle}
               onChange={(e) => setCustomTitle(e.target.value)}
               placeholder="เช่น ค่าน้ำมัน, ค่าทางด่วน, ค่าซ่อม..."
-              className="brutal-btn w-full bg-card text-base"
+              className="clean-btn w-full bg-card text-base"
               style={{ borderColor: CATEGORIES.other.color }}
             />
           </motion.div>
@@ -198,7 +198,7 @@ export default function AddEntry() {
               <select
                 value={plate}
                 onChange={(e) => setPlate(e.target.value)}
-                className="brutal-btn flex-1 bg-card text-sm appearance-none"
+                className="clean-btn flex-1 bg-card text-sm appearance-none"
               >
                 <option value="">เลือกทะเบียนรถ...</option>
                 {plates.map((p) => (
@@ -210,7 +210,7 @@ export default function AddEntry() {
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setShowNewPlate(true)}
-                className="brutal-btn bg-card flex items-center justify-center w-12"
+                className="clean-btn bg-card flex items-center justify-center w-12"
               >
                 <Plus className="w-5 h-5" />
               </motion.button>
@@ -231,7 +231,7 @@ export default function AddEntry() {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             placeholder="0"
-            className="brutal-btn w-full bg-card num-display text-xl pr-12"
+            className="clean-btn w-full bg-card num-display text-xl pr-12"
           />
           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">
             ฿
@@ -243,7 +243,7 @@ export default function AddEntry() {
             <button
               key={p}
               onClick={() => setPrice(String(p))}
-              className="px-3 py-1.5 rounded-lg text-sm num-display border-2 border-border bg-secondary hover:bg-accent transition-colors"
+              className="px-3 py-1.5 rounded-lg text-sm num-display border border-border bg-secondary hover:bg-accent transition-colors"
             >
               ฿{p}
             </button>
@@ -262,7 +262,7 @@ export default function AddEntry() {
           value={note}
           onChange={(e) => setNote(e.target.value)}
           placeholder="เช่น ล้างภายนอก, ส่งสนามบิน..."
-          className="brutal-btn w-full bg-card text-base"
+          className="clean-btn w-full bg-card text-base"
         />
       </div>
 
@@ -271,7 +271,7 @@ export default function AddEntry() {
         whileTap={{ scale: 0.97 }}
         onClick={handleSave}
         disabled={saving}
-        className="brutal-btn w-full text-white text-lg font-semibold flex items-center justify-center gap-2 py-4"
+        className="clean-btn w-full text-white text-lg font-semibold flex items-center justify-center gap-2 py-4"
         style={{ background: "linear-gradient(135deg, #F97316 0%, #EA580C 100%)" }}
       >
         <Save className="w-5 h-5" />
@@ -288,7 +288,7 @@ export default function AddEntry() {
             className="mt-4"
           >
             <div
-              className="brutal-card p-4"
+              className="clean-card p-4"
               style={{ borderColor: CATEGORIES[category].color }}
             >
               <p className="text-xs text-muted-foreground mb-1">ตัวอย่าง</p>
@@ -313,7 +313,7 @@ export default function AddEntry() {
 
       {/* New Plate Dialog */}
       <Dialog open={showNewPlate} onOpenChange={setShowNewPlate}>
-        <DialogContent className="brutal-card !rounded-xl max-w-sm">
+        <DialogContent className="clean-card !rounded-xl max-w-sm">
           <DialogHeader>
             <DialogTitle>เพิ่มทะเบียนรถใหม่</DialogTitle>
           </DialogHeader>
@@ -324,7 +324,7 @@ export default function AddEntry() {
                 value={newPlateValue}
                 onChange={(e) => setNewPlateValue(e.target.value)}
                 placeholder="เช่น กก 1234"
-                className="text-lg py-5 border-2"
+                className="text-lg py-5 border"
               />
             </div>
             <div>
@@ -333,7 +333,7 @@ export default function AddEntry() {
                 value={newPlateModel}
                 onChange={(e) => setNewPlateModel(e.target.value)}
                 placeholder="เช่น City Turbo, Yaris Ativ"
-                className="border-2"
+                className="border"
               />
             </div>
             <div>
@@ -342,7 +342,7 @@ export default function AddEntry() {
                 value={newPlateColor}
                 onChange={(e) => setNewPlateColor(e.target.value)}
                 placeholder="เช่น ขาว, ดำ, เทา"
-                className="border-2"
+                className="border"
               />
             </div>
           </div>

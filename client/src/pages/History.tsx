@@ -148,8 +148,8 @@ export default function History() {
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => setShowFilters(!showFilters)}
-          className={`brutal-btn flex items-center gap-1.5 text-sm py-2 px-3 ${
-            hasFilters ? "bg-orange-500 text-white border-orange-600" : "bg-card"
+          className={`clean-btn flex items-center gap-1.5 text-sm py-2 px-3 ${
+            hasFilters ? "bg-orange-500 text-white" : "bg-card"
           }`}
         >
           <Filter className="w-4 h-4" />
@@ -171,7 +171,7 @@ export default function History() {
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden"
           >
-            <div className="brutal-card p-4 mb-4 space-y-3">
+            <div className="clean-card p-4 mb-4 space-y-3">
               <div>
                 <label className="text-xs font-medium text-muted-foreground mb-1 block">
                   วันที่
@@ -180,7 +180,7 @@ export default function History() {
                   type="date"
                   value={filterDate}
                   onChange={(e) => setFilterDate(e.target.value)}
-                  className="w-full border-2 border-border rounded-lg px-3 py-2 text-sm bg-card num-display"
+                  className="w-full border border-border rounded-lg px-3 py-2 text-sm bg-card num-display"
                 />
               </div>
               <div>
@@ -190,9 +190,9 @@ export default function History() {
                 <div className="flex gap-2 flex-wrap">
                   <button
                     onClick={() => setFilterCategory("all")}
-                    className={`px-3 py-1.5 rounded-lg text-sm border-2 transition-colors ${
+                    className={`px-3 py-1.5 rounded-lg text-sm border transition-colors ${
                       filterCategory === "all"
-                        ? "bg-orange-500 text-white border-orange-500"
+                        ? "bg-orange-500 text-white"
                         : "border-border bg-card"
                     }`}
                   >
@@ -202,7 +202,7 @@ export default function History() {
                     <button
                       key={cat}
                       onClick={() => setFilterCategory(cat)}
-                      className={`px-3 py-1.5 rounded-lg text-sm border-2 flex items-center gap-1 transition-colors`}
+                      className={`px-3 py-1.5 rounded-lg text-sm border flex items-center gap-1 transition-colors`}
                       style={{
                         borderColor:
                           filterCategory === cat
@@ -231,7 +231,7 @@ export default function History() {
                 <select
                   value={filterPlate}
                   onChange={(e) => setFilterPlate(e.target.value)}
-                  className="w-full border-2 border-border rounded-lg px-3 py-2 text-sm bg-card appearance-none"
+                  className="w-full border border-border rounded-lg px-3 py-2 text-sm bg-card appearance-none"
                 >
                   <option value="all">ทั้งหมด</option>
                   {uniquePlates.map((p) => (
@@ -282,7 +282,7 @@ export default function History() {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, x: -100 }}
-                className="brutal-card p-3"
+                className="clean-card p-3"
               >
                 <div className="flex items-center gap-3">
                   <div
@@ -317,13 +317,13 @@ export default function History() {
                   <div className="flex gap-1 shrink-0">
                     <button
                       onClick={() => openEdit(entry)}
-                      className="w-8 h-8 rounded-lg border-2 border-border flex items-center justify-center hover:bg-accent transition-colors"
+                      className="w-8 h-8 rounded-lg border border-border flex items-center justify-center hover:bg-accent transition-colors"
                     >
                       <Pencil className="w-3.5 h-3.5" />
                     </button>
                     <button
                       onClick={() => setDeleteId(entry.id)}
-                      className="w-8 h-8 rounded-lg border-2 border-destructive text-destructive flex items-center justify-center hover:bg-destructive/10 transition-colors"
+                      className="w-8 h-8 rounded-lg border border-destructive text-destructive flex items-center justify-center hover:bg-destructive/10 transition-colors"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
@@ -337,7 +337,7 @@ export default function History() {
 
       {/* Edit Dialog */}
       <Dialog open={!!editEntry} onOpenChange={() => setEditEntry(null)}>
-        <DialogContent className="brutal-card !rounded-xl max-w-sm">
+        <DialogContent className="clean-card !rounded-xl max-w-sm">
           <DialogHeader>
             <DialogTitle>แก้ไขรายการ</DialogTitle>
           </DialogHeader>
@@ -350,7 +350,7 @@ export default function History() {
                 type="date"
                 value={editDate}
                 onChange={(e) => setEditDate(e.target.value)}
-                className="w-full border-2 border-border rounded-lg px-3 py-2 text-sm bg-card num-display"
+                className="w-full border border-border rounded-lg px-3 py-2 text-sm bg-card num-display"
               />
             </div>
             <div>
@@ -365,7 +365,7 @@ export default function History() {
                       setEditCategory(cat);
                       if (cat === "other") setEditPlate("");
                     }}
-                    className={`px-2 py-2 rounded-lg text-xs border-2 text-center transition-colors`}
+                    className={`px-2 py-2 rounded-lg text-xs border text-center transition-colors`}
                     style={{
                       borderColor:
                         editCategory === cat
@@ -397,7 +397,7 @@ export default function History() {
                   value={editCustomTitle}
                   onChange={(e) => setEditCustomTitle(e.target.value)}
                   placeholder="เช่น ค่าน้ำมัน, ค่าทางด่วน..."
-                  className="border-2"
+                  className="border"
                 />
               </div>
             )}
@@ -411,7 +411,7 @@ export default function History() {
                 <select
                   value={editPlate}
                   onChange={(e) => setEditPlate(e.target.value)}
-                  className="w-full border-2 border-border rounded-lg px-3 py-2 text-sm bg-card appearance-none"
+                  className="w-full border border-border rounded-lg px-3 py-2 text-sm bg-card appearance-none"
                 >
                   {Array.from(new Set([...plates.map((p) => p.plate), editPlate].filter(Boolean))).map(
                     (p) => (
@@ -433,7 +433,7 @@ export default function History() {
                 inputMode="numeric"
                 value={editPrice}
                 onChange={(e) => setEditPrice(e.target.value)}
-                className="num-display text-lg border-2"
+                className="num-display text-lg border"
               />
             </div>
             <div>
@@ -444,7 +444,7 @@ export default function History() {
                 value={editNote}
                 onChange={(e) => setEditNote(e.target.value)}
                 placeholder="หมายเหตุ..."
-                className="border-2"
+                className="border"
               />
             </div>
           </div>
@@ -462,7 +462,7 @@ export default function History() {
 
       {/* Delete Confirmation */}
       <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
-        <AlertDialogContent className="brutal-card !rounded-xl max-w-sm">
+        <AlertDialogContent className="clean-card !rounded-xl max-w-sm">
           <AlertDialogHeader>
             <AlertDialogTitle>ยืนยันการลบ</AlertDialogTitle>
             <AlertDialogDescription>

@@ -163,9 +163,9 @@ export default function Reports() {
           <button
             key={key}
             onClick={() => setPeriod(key)}
-            className={`flex-1 brutal-btn text-sm py-2.5 flex items-center justify-center gap-1.5 ${
+            className={`flex-1 clean-btn text-sm py-2.5 flex items-center justify-center gap-1.5 ${
               period === key
-                ? "bg-orange-500 text-white border-orange-600"
+                ? "bg-orange-500 text-white"
                 : "bg-card"
             }`}
           >
@@ -181,7 +181,7 @@ export default function Reports() {
           type="date"
           value={selectedDate}
           onChange={(e) => setSelectedDate(e.target.value)}
-          className="w-full border-2 border-border rounded-xl px-4 py-2.5 text-sm bg-card num-display"
+          className="w-full border border-border rounded-xl px-4 py-2.5 text-sm bg-card num-display"
         />
         <p className="text-xs text-muted-foreground mt-1 px-1">{periodLabel}</p>
       </div>
@@ -192,7 +192,7 @@ export default function Reports() {
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="brutal-card p-5 mb-4 text-white"
+          className="clean-card p-5 mb-4 text-white"
           style={{ background: "linear-gradient(135deg, #F97316 0%, #EA580C 100%)" }}
         >
           <p className="text-sm opacity-80 mb-1">รวมรายจ่ายทั้งหมด</p>
@@ -221,7 +221,7 @@ export default function Reports() {
               <motion.div
                 key={s.category}
                 whileTap={{ scale: 0.98 }}
-                className="brutal-card p-4"
+                className="clean-card p-4"
                 style={{ borderColor: config.color }}
               >
                 <div className="flex items-center gap-3">
@@ -265,7 +265,7 @@ export default function Reports() {
 
       {/* Chart */}
       {chartData.length > 1 && (
-        <div className="brutal-card p-4 mb-5">
+        <div className="clean-card p-4 mb-5">
           <h2 className="text-sm font-semibold mb-3">กราฟรายจ่าย</h2>
           <DailyChart data={chartData} />
         </div>
@@ -281,7 +281,7 @@ export default function Reports() {
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={handleCopyText}
-            className="brutal-btn bg-card text-sm py-3 flex flex-col items-center gap-1.5"
+            className="clean-btn bg-card text-sm py-3 flex flex-col items-center gap-1.5"
           >
             <Copy className="w-5 h-5" />
             <span>คัดลอก</span>
@@ -289,7 +289,7 @@ export default function Reports() {
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={handleShare}
-            className="brutal-btn bg-card text-sm py-3 flex flex-col items-center gap-1.5"
+            className="clean-btn bg-card text-sm py-3 flex flex-col items-center gap-1.5"
           >
             <Share2 className="w-5 h-5" />
             <span>แชร์</span>
@@ -297,7 +297,7 @@ export default function Reports() {
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={handleExportCSV}
-            className="brutal-btn bg-card text-sm py-3 flex flex-col items-center gap-1.5"
+            className="clean-btn bg-card text-sm py-3 flex flex-col items-center gap-1.5"
           >
             <FileSpreadsheet className="w-5 h-5" />
             <span>CSV</span>

@@ -1,6 +1,6 @@
 /**
  * App.tsx — Root component with routing, providers, and layout
- * Design: Orange & White — mobile-first with bottom navigation
+ * Design: Clean Light Mode — orange & white, soft shadows
  */
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -44,16 +44,14 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header — white with orange accent */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b-2 border-orange-200">
-        <div className="max-w-lg mx-auto px-4 py-2 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <img
-              src={LOGO_URL}
-              alt="My Car Rent"
-              className="h-10 w-auto"
-            />
-          </div>
+      {/* Header — clean with subtle shadow */}
+      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-lg" style={{ boxShadow: "0 1px 8px rgba(0,0,0,0.04)" }}>
+        <div className="max-w-lg mx-auto px-4 py-2.5 flex items-center">
+          <img
+            src={LOGO_URL}
+            alt="My Car Rent"
+            className="h-9 w-auto"
+          />
         </div>
       </header>
 
@@ -78,8 +76,7 @@ function App() {
             <Toaster
               position="top-center"
               toastOptions={{
-                className:
-                  "brutal-card !border-2 !shadow-[3px_3px_0px_#F97316]",
+                className: "!rounded-xl !shadow-md !border !border-orange-100",
               }}
             />
           </DataProvider>

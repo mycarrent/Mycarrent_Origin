@@ -1,8 +1,8 @@
 /*
- * My Car Rent — Orange & White Theme
- * Design: Clean Neo-Brutalism with orange accent
+ * My Car Rent — Clean Light Mode (Orange & White)
+ * Design: Soft shadows, rounded corners, minimal borders
  * Font: Kanit (Thai), Roboto Mono (numbers)
- * Palette: White background + orange primary + bold category colors
+ * Palette: Warm white bg + orange gradient accent + soft category colors
  */
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -48,55 +48,55 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --font-sans: "Kanit", sans-serif;
   --font-mono: "Roboto Mono", monospace;
-  /* Category colors — vibrant and distinct */
-  --color-wash: oklch(0.55 0.18 250);
-  --color-wash-bg: oklch(0.95 0.03 250);
-  --color-delivery: oklch(0.58 0.17 160);
-  --color-delivery-bg: oklch(0.95 0.03 160);
-  --color-pickup: oklch(0.65 0.19 55);
-  --color-pickup-bg: oklch(0.95 0.04 55);
-  --color-other: oklch(0.55 0.17 310);
-  --color-other-bg: oklch(0.95 0.03 310);
+  /* Category colors — soft and friendly */
+  --color-wash: oklch(0.58 0.16 250);
+  --color-wash-bg: oklch(0.96 0.02 250);
+  --color-delivery: oklch(0.60 0.15 160);
+  --color-delivery-bg: oklch(0.96 0.02 160);
+  --color-pickup: oklch(0.67 0.17 55);
+  --color-pickup-bg: oklch(0.96 0.03 55);
+  --color-other: oklch(0.58 0.15 310);
+  --color-other-bg: oklch(0.96 0.02 310);
 }
 
 :root {
-  --radius: 0.75rem;
-  /* White background */
-  --background: oklch(0.99 0 0);
-  --foreground: oklch(0.18 0.02 60);
+  --radius: 1rem;
+  /* Warm white background */
+  --background: oklch(0.985 0.002 80);
+  --foreground: oklch(0.22 0.02 60);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.02 60);
+  --card-foreground: oklch(0.22 0.02 60);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.02 60);
+  --popover-foreground: oklch(0.22 0.02 60);
   /* Orange primary */
   --primary: oklch(0.7 0.18 55);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.97 0.005 60);
+  --secondary: oklch(0.975 0.003 60);
   --secondary-foreground: oklch(0.35 0.02 60);
-  --muted: oklch(0.96 0.005 60);
-  --muted-foreground: oklch(0.5 0.015 60);
-  --accent: oklch(0.95 0.04 55);
-  --accent-foreground: oklch(0.18 0.02 60);
-  --destructive: oklch(0.58 0.24 27);
+  --muted: oklch(0.965 0.003 60);
+  --muted-foreground: oklch(0.52 0.012 60);
+  --accent: oklch(0.96 0.03 55);
+  --accent-foreground: oklch(0.22 0.02 60);
+  --destructive: oklch(0.60 0.22 27);
   --destructive-foreground: oklch(0.98 0 0);
-  /* Orange-tinted borders */
-  --border: oklch(0.85 0.02 60);
-  --input: oklch(0.92 0.01 60);
+  /* Subtle borders */
+  --border: oklch(0.92 0.008 60);
+  --input: oklch(0.94 0.006 60);
   --ring: oklch(0.7 0.18 55);
   /* Chart colors */
-  --chart-1: oklch(0.55 0.18 250);
-  --chart-2: oklch(0.58 0.17 160);
-  --chart-3: oklch(0.65 0.19 55);
-  --chart-4: oklch(0.55 0.17 310);
+  --chart-1: oklch(0.58 0.16 250);
+  --chart-2: oklch(0.60 0.15 160);
+  --chart-3: oklch(0.67 0.17 55);
+  --chart-4: oklch(0.58 0.15 310);
   --chart-5: oklch(0.7 0.18 55);
   /* Sidebar */
-  --sidebar: oklch(0.99 0 0);
-  --sidebar-foreground: oklch(0.18 0.02 60);
+  --sidebar: oklch(0.985 0.002 80);
+  --sidebar-foreground: oklch(0.22 0.02 60);
   --sidebar-primary: oklch(0.7 0.18 55);
   --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.97 0.02 55);
-  --sidebar-accent-foreground: oklch(0.18 0.02 60);
-  --sidebar-border: oklch(0.85 0.02 60);
+  --sidebar-accent-foreground: oklch(0.22 0.02 60);
+  --sidebar-border: oklch(0.92 0.008 60);
   --sidebar-ring: oklch(0.7 0.18 55);
 }
 
@@ -108,6 +108,7 @@
     @apply bg-background text-foreground;
     font-family: "Kanit", sans-serif;
     -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -151,34 +152,31 @@
     }
   }
 
-  /* Neo-Brutalist Card — orange shadow */
-  .brutal-card {
-    @apply bg-card rounded-xl;
-    border: 2.5px solid oklch(0.18 0.02 60);
-    box-shadow: 4px 4px 0px oklch(0.7 0.18 55);
+  /* Clean Card — soft shadow, no thick border */
+  .clean-card {
+    @apply bg-card rounded-2xl;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .clean-card:active {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.03);
+    transform: translateY(1px);
+  }
+
+  /* Clean Button — soft shadow */
+  .clean-btn {
+    @apply font-medium rounded-xl px-5 py-3 text-base;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
     transition: box-shadow 0.15s ease, transform 0.15s ease;
   }
-  .brutal-card:active {
-    box-shadow: 2px 2px 0px oklch(0.7 0.18 55);
-    transform: translate(2px, 2px);
+  .clean-btn:active {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    transform: translateY(1px);
   }
 
-  /* Neo-Brutalist Button — orange shadow */
-  .brutal-btn {
-    @apply font-medium rounded-xl px-5 py-3 text-base;
-    border: 2.5px solid oklch(0.18 0.02 60);
-    box-shadow: 3px 3px 0px oklch(0.7 0.18 55);
-    transition: box-shadow 0.1s ease, transform 0.1s ease;
-  }
-  .brutal-btn:active {
-    box-shadow: 1px 1px 0px oklch(0.7 0.18 55);
-    transform: translate(2px, 2px);
-  }
-
-  /* Category Badge */
+  /* Category Badge — soft pill */
   .cat-badge {
     @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium;
-    border: 2px solid currentColor;
   }
 
   /* Number display */
@@ -194,7 +192,7 @@
   @keyframes pageEnter {
     from {
       opacity: 0;
-      transform: translateY(12px);
+      transform: translateY(8px);
     }
     to {
       opacity: 1;
@@ -215,7 +213,7 @@
   @keyframes staggerIn {
     from {
       opacity: 0;
-      transform: translateY(8px);
+      transform: translateY(6px);
     }
     to {
       opacity: 1;
