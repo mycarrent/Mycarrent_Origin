@@ -146,40 +146,26 @@ export function entriesToCSV(entries: Entry[]): string {
 
 export function entriesToText(entries: Entry[], title: string): string {
   const lines: string[] = [];
-  lines.push("═".repeat(40));
-  lines.push(`  📋 ${title}`);
-  lines.push("═".repeat(40));
+  const total = totalIncome(entries);
+  const summary = summarizeByCategory(entries);
+
+  // Header
+  lines.push(`🚗 My Car Rent`);
+  lines.push(`📅 ${title}`);
   lines.push("");
 
-  const summary = summarizeByCategory(entries);
-  for (const s of summary) {
-    const cat = CATEGORIES[s.category];
-    lines.push(`${cat.icon} ${cat.label} (${cat.labelEn})`);
-    lines.push(`   จำนวน: ${s.count} รายการ`);
-    lines.push(`   รวม: ฿${formatPrice(s.total)}`);
+  // Category summary — one line each, only show categories with data
+  const activeSummary = summary.filter((s) => s.count > 0);
+  if (activeSummary.length > 0) {
+    for (const s of activeSummary) {
+      const cat = CATEGORIES[s.category];
+      lines.push(`${cat.icon} ${cat.label} ${s.count} งาน ฿${formatPrice(s.total)}`);
+    }
     lines.push("");
   }
 
-  lines.push("─".repeat(40));
-  lines.push(`💰 รวมรายจ่ายทั้งหมด: ฿${formatPrice(totalIncome(entries))}`);
-  lines.push(`📊 จำนวนรายการ: ${entries.length}`);
-  lines.push("─".repeat(40));
-  lines.push("");
-
-  lines.push("รายละเอียด:");
-  for (const e of entries) {
-    const cat = CATEGORIES[e.category];
-    const label = e.category === "other" ? (e.customTitle || "อื่นๆ") : cat.label;
-    const plateStr = e.plate ? `${e.plate} | ` : "";
-    lines.push(
-      `  ${cat.icon} ${plateStr}${label} | ฿${formatPrice(e.price)}${e.note ? ` | ${e.note}` : ""}`
-    );
-  }
-
-  lines.push("");
-  lines.push("═".repeat(40));
-  lines.push("  My Car Rent — สร้างโดยระบบ");
-  lines.push("═".repeat(40));
+  // Grand total
+  lines.push(`💰 รวม ${entries.length} งาน = ฿${formatPrice(total)}`);
 
   return lines.join("\n");
 }

@@ -117,7 +117,7 @@ export default function Reports() {
 
   // Export functions
   const handleCopyText = () => {
-    const text = entriesToText(filteredEntries, `รายงาน ${periodLabel}`);
+    const text = entriesToText(filteredEntries, periodLabel);
     navigator.clipboard.writeText(text);
     toast.success("คัดลอกข้อความแล้ว");
   };
