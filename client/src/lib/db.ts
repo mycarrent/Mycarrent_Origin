@@ -208,7 +208,7 @@ export async function seedRealPlates(): Promise<void> {
 
   const realPlates: { plate: string; model: string; color: string }[] = [
     { plate: "ขฉ 9452", model: "Yaris Ativ", color: "ขาว" },
-    { plate: "ขฉ 7685", model: "Yaris Ativ", color: "ขาว" },
+    { plate: "ขฉ 7685", model: "Yaris Ativ", color: "เทา" },
     { plate: "ขฉ 7516", model: "Yaris Ativ", color: "เทา" },
     { plate: "ขท 4090", model: "Yaris Ativ", color: "ขาว" },
     { plate: "ขต 3245", model: "City Turbo", color: "ขาว" },
@@ -249,9 +249,9 @@ export async function seedSampleData(): Promise<void> {
   // Generate sample entries for the past 30 days
   const categories: Category[] = ["wash", "delivery", "pickup"];
   const prices: Record<string, number[]> = {
-    wash: [200, 250, 300, 350, 400],
-    delivery: [500, 600, 700, 800, 1000],
-    pickup: [300, 400, 500, 600],
+    wash: [50, 100, 120, 150, 200],
+    delivery: [25, 50, 75, 100, 120],
+    pickup: [25, 50, 75, 100, 120],
   };
   const notes: Record<string, string[]> = {
     wash: ["ล้างภายนอก", "ล้างทั้งภายในภายนอก", "ล้างแว็กซ์", ""],
@@ -289,7 +289,7 @@ export async function seedSampleData(): Promise<void> {
     // Occasionally add an "other" entry
     if (Math.random() < 0.3) {
       const otherTitles = ["ค่าน้ำมัน", "ค่าทางด่วน", "ค่าที่จอดรถ", "ค่าซ่อมบำรุง", "ค่าประกัน"];
-      const otherPrices = [100, 150, 200, 500, 1000, 1500];
+      const otherPrices = [100, 150, 200, 300, 500, 1000];
       await addEntry({
         date: dateStr,
         category: "other",
