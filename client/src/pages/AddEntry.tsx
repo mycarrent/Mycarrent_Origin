@@ -34,6 +34,11 @@ const OTHER_SUB_CATEGORIES = [
     icon: "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/49_85223_2f0e09d9.webp",
   },
   {
+    id: "gas_refill",
+    label: "วนเติมน้ำมัน",
+    icon: "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/2563939_24dfc3a0.webp",
+  },
+  {
     id: "parking",
     label: "ค่าที่จอดรถ",
     icon: "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/IMG_20260323_221943_0e7804ab.jpg",
