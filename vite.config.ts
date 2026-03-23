@@ -153,7 +153,6 @@ function vitePluginManusDebugCollector(): Plugin {
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
 
 export default defineConfig({
-  base: '/',
   plugins,
   resolve: {
     alias: {
@@ -167,40 +166,6 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
-    rollupOptions: {
-      output: {
-        /**
-         * Split large vendor libraries into separate cacheable chunks.
-         * - "vendor-react"  : react + react-dom (rarely changes)
-         * - "vendor-motion" : framer-motion (animation library, ~100 kB)
-         * - "vendor-charts" : recharts + dependencies (chart library, ~200 kB)
-         * - "vendor-ui"     : all @radix-ui primitives bundled together
-         * Everything else (app code) stays in the default chunk(s).
-         */
-        manualChunks(id: string) {
-          if (id.includes("node_modules/react/") || id.includes("node_modules/react-dom/")) {
-            return "vendor-react";
-          }
-          if (id.includes("node_modules/framer-motion/")) {
-            return "vendor-motion";
-          }
-          // Include only recharts and d3 modules that recharts depends on
-          // Avoid broad d3- pattern to prevent circular dependency issues
-          if (id.includes("node_modules/recharts/")) {
-            return "vendor-charts";
-          }
-          if (id.includes("node_modules/d3-time-format/") ||
-              id.includes("node_modules/d3-time/") ||
-              id.includes("node_modules/d3-scale/") ||
-              id.includes("node_modules/victory-vendor/")) {
-            return "vendor-charts";
-          }
-          if (id.includes("node_modules/@radix-ui/")) {
-            return "vendor-ui";
-          }
-        },
-      },
-    },
   },
   server: {
     port: 3000,
