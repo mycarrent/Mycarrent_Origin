@@ -153,6 +153,7 @@ function vitePluginManusDebugCollector(): Plugin {
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
 
 export default defineConfig({
+  base: '/',
   plugins,
   resolve: {
     alias: {
@@ -183,7 +184,15 @@ export default defineConfig({
           if (id.includes("node_modules/framer-motion/")) {
             return "vendor-motion";
           }
-          if (id.includes("node_modules/recharts/") || id.includes("node_modules/d3-")) {
+          // Include only recharts and d3 modules that recharts depends on
+          // Avoid broad d3- pattern to prevent circular dependency issues
+          if (id.includes("node_modules/recharts/")) {
+            return "vendor-charts";
+          }
+          if (id.includes("node_modules/d3-time-format/") ||
+              id.includes("node_modules/d3-time/") ||
+              id.includes("node_modules/d3-scale/") ||
+              id.includes("node_modules/victory-vendor/")) {
             return "vendor-charts";
           }
           if (id.includes("node_modules/@radix-ui/")) {
