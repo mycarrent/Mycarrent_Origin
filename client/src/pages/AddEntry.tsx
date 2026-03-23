@@ -27,6 +27,19 @@ const CATEGORY_ICONS: Record<Category, React.ReactNode> = {
   other: <ClipboardList className="w-7 h-7" />,
 };
 
+const OTHER_SUB_CATEGORIES = [
+  {
+    id: "fuel",
+    label: "ค่าน้ำมัน",
+    icon: "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/49_85223_2f0e09d9.webp",
+  },
+  {
+    id: "parking",
+    label: "ค่าที่จอดรถ",
+    icon: "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/IMG_20260323_221943_0e7804ab.jpg",
+  },
+];
+
 export default function AddEntry() {
   const { addEntry, plates, addPlate } = useData();
 
@@ -131,6 +144,7 @@ export default function AddEntry() {
                   setCategory(cat);
                   // Reset plate when switching to/from "other"
                   if (cat === "other") setPlate("");
+                  if (cat !== "other") setCustomTitle("");
                 }}
                 className={`clean-card p-3 text-center transition-all ${
                   selected ? "!bg-orange-50" : ""
@@ -158,7 +172,7 @@ export default function AddEntry() {
         </div>
       </div>
 
-      {/* Custom Title (only for "other" category) */}
+      {/* Sub-categories for "other" */}
       <AnimatePresence>
         {isOther && (
           <motion.div
@@ -167,6 +181,33 @@ export default function AddEntry() {
             exit={{ opacity: 0, height: 0 }}
             className="mb-5 overflow-hidden"
           >
+            <label className="text-sm font-medium text-muted-foreground mb-2 block">
+              เลือกประเภท (ไม่บังคับ)
+            </label>
+            <div className="grid grid-cols-2 gap-2 mb-4">
+              {OTHER_SUB_CATEGORIES.map((sub) => (
+                <motion.button
+                  key={sub.id}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setCustomTitle(sub.label)}
+                  className="clean-card p-3 text-center transition-all"
+                  style={{
+                    borderColor: customTitle === sub.label ? CATEGORIES.other.color : undefined,
+                    boxShadow: customTitle === sub.label ? `4px 4px 0px ${CATEGORIES.other.color}` : undefined,
+                    backgroundColor: customTitle === sub.label ? "#EDE9FE" : undefined,
+                  }}
+                >
+                  <div className="flex justify-center mb-1.5">
+                    <img 
+                      src={sub.icon} 
+                      alt={sub.label}
+                      className="w-6 h-6 object-contain"
+                    />
+                  </div>
+                  <p className="text-xs font-medium">{sub.label}</p>
+                </motion.button>
+              ))}
+            </div>
             <label className="text-sm font-medium text-muted-foreground mb-2 block">
               หัวข้อ (จำเป็น)
             </label>
