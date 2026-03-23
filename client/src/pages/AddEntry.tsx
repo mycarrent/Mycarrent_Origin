@@ -36,7 +36,7 @@ const OTHER_SUB_CATEGORIES = [
   {
     id: "gas_refill",
     label: "วนเติมน้ำมัน",
-    icon: "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/2563939_24dfc3a0.webp",
+    icon: "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/IMG_20260324_001705_57e66920.jpg",
   },
   {
     id: "parking",
@@ -189,13 +189,13 @@ export default function AddEntry() {
             <label className="text-sm font-medium text-muted-foreground mb-2 block">
               เลือกประเภท (ไม่บังคับ)
             </label>
-            <div className="grid grid-cols-2 gap-2 mb-4">
+            <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
               {OTHER_SUB_CATEGORIES.map((sub) => (
                 <motion.button
                   key={sub.id}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setCustomTitle(sub.label)}
-                  className="clean-card p-3 text-center transition-all"
+                  className="clean-card p-3 text-center transition-all flex-shrink-0 w-[calc(33.333%-6px)]"
                   style={{
                     borderColor: customTitle === sub.label ? CATEGORIES.other.color : undefined,
                     boxShadow: customTitle === sub.label ? `4px 4px 0px ${CATEGORIES.other.color}` : undefined,
