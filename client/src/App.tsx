@@ -19,8 +19,8 @@ import Reports from "./pages/Reports";
 import Vehicles from "./pages/Vehicles";
 import Settings from "./pages/Settings";
 
-const LOGO_LIGHT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/my-car-rent-logo-light-Z7baLcYRPz2BkQQ7zwUX22.webp";
-const LOGO_DARK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/1718725111378__w_-removebg(1)_20260323_184415_0000_3ef5e6f8.webp";
+const LOGO_LIGHT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/1718725111378__1_-removebg(1)_20260319_113407_0000_3211d834.webp";
+const LOGO_DARK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/1718725111378__w_-removebg(1)_20260323_184415_0000_8da86558.webp";
 
 function Router() {
   return (
