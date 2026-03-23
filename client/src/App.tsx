@@ -19,7 +19,8 @@ import Reports from "./pages/Reports";
 import Vehicles from "./pages/Vehicles";
 import Settings from "./pages/Settings";
 
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/my-car-rent-logo_efb7efea.webp";
+const LOGO_LIGHT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/my-car-rent-logo-light-Z7baLcYRPz2BkQQ7zwUX22.webp";
+const LOGO_DARK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/1718725111378__w_-removebg(1)_20260323_184415_0000_3ef5e6f8.webp";
 
 function Router() {
   return (
@@ -42,7 +43,7 @@ function HeaderContent() {
     <header className="sticky top-0 z-40 bg-background/90 backdrop-blur-lg border-b border-border" style={{ boxShadow: "0 1px 8px rgba(0,0,0,0.04)" }}>
       <div className="max-w-lg mx-auto px-4 py-2.5 flex items-center justify-between">
         <img
-          src={LOGO_URL}
+          src={theme === 'dark' ? LOGO_DARK : LOGO_LIGHT}
           alt="My Car Rent"
           className="h-9 w-auto"
         />
