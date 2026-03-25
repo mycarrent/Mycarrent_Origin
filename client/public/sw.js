@@ -4,7 +4,7 @@
  * Provides full offline support since all data is in IndexedDB
  */
 
-const CACHE_NAME = "my-car-rent-v1-pwa";
+const CACHE_NAME = "my-car-rent-v1";
 const STATIC_ASSETS = [
   "/",
   "/manifest.json",
