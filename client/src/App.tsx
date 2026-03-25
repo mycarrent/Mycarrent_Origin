@@ -18,19 +18,36 @@ import History from "./pages/History";
 import Reports from "./pages/Reports";
 import Vehicles from "./pages/Vehicles";
 import Settings from "./pages/Settings";
+import Login from "./pages/Login";
+import { useAuth } from "./_core/hooks/useAuth";
 
 const LOGO_LIGHT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/1718725111378__1_-removebg(1)_20260319_113407_0000_3211d834.webp";
 const LOGO_DARK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663452232695/Geqw5Dwwk2pA5LmRx3Tkji/1718725111378__w_-removebg(1)_20260323_184415_0000_8da86558.webp";
+function ProtectedRoute({ component: Component }: { component: React.ComponentType }) {
+  const { isAuthenticated, loading } = useAuth();
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
+  if (!isAuthenticated) {
+    return <Login />;
+  }
+
+  return <Component />;
+}
 
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
-      <Route path="/" component={Dashboard} />
-      <Route path="/add" component={AddEntry} />
-      <Route path="/history" component={History} />
-      <Route path="/reports" component={Reports} />
-      <Route path="/vehicles" component={Vehicles} />
-      <Route path="/settings" component={Settings} />
+      <Route path="/login" component={Login} />
+      <Route path="/" component={() => <ProtectedRoute component={Dashboard} />} />
+      <Route path="/add" component={() => <ProtectedRoute component={AddEntry} />} />
+      <Route path="/history" component={() => <ProtectedRoute component={History} />} />
+      <Route path="/reports" component={() => <ProtectedRoute component={Reports} />} />
+      <Route path="/vehicles" component={() => <ProtectedRoute component={Vehicles} />} />
+      <Route path="/settings" component={() => <ProtectedRoute component={Settings} />} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
@@ -63,10 +80,19 @@ function HeaderContent() {
   );
 }
 
-function AppContent() {
-  const { loading } = useData();
+function AppContentInner() {
+  const { loading: dataLoading } = useData();
+  const { isAuthenticated, loading: authLoading } = useAuth();
 
-  if (loading) {
+  if (authLoading) {
+    return <LoadingScreen />;
+  }
+
+  if (!isAuthenticated) {
+    return <Router />;
+  }
+
+  if (dataLoading) {
     return <LoadingScreen />;
   }
 
@@ -84,6 +110,10 @@ function AppContent() {
       <BottomNav />
     </div>
   );
+}
+
+function AppContent() {
+  return <AppContentInner />;
 }
 
 function App() {
