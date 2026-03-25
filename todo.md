@@ -5,6 +5,7 @@
 - [x] Fix provider order in main.tsx (QueryClientProvider wrapping trpc.Provider)
 - [x] Create Login page with Google OAuth button
 - [x] Add protected routes with authentication checks
+- [x] Fix page flicker bug (moved ThemeProvider outside ErrorBoundary)
 - [ ] Test Google OAuth login flow
 - [ ] Verify user session persistence
 - [ ] Test logout functionality

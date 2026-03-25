@@ -118,8 +118,8 @@ function AppContent() {
 
 function App() {
   return (
-    <ErrorBoundary>
-      <ThemeProvider defaultTheme="light" switchable={true}>
+    <ThemeProvider defaultTheme="light" switchable={true}>
+      <ErrorBoundary>
         <TooltipProvider>
           <DataProvider>
             <AppContent />
@@ -131,8 +131,8 @@ function App() {
             />
           </DataProvider>
         </TooltipProvider>
-      </ThemeProvider>
-    </ErrorBoundary>
+      </ErrorBoundary>
+    </ThemeProvider>
   );
 }
 
